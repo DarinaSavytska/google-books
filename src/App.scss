@@ -1,8 +1,28 @@
+body {
+  margin: 0;
+}
+
 .App {
   font-size: 30px;
+  margin: 0;
+
+  &__header {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    // position: fixed;
+    // height: 20%;
+    background-color: mediumturquoise;
+    // padding: 30px;
+    // top: 0;
+    // left: 0;
+    // right: 0;
+    // padding-bottom: 20px;
+  }
 
   &__title {
     text-align: center;
+    margin: 0;
   }
 
   &__form {
@@ -13,6 +33,23 @@
     &--item {
       background-color: lime;
       font-size: 30px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    font-size: 20px;
+
+    &__form--item {
+      font-size: 20px;
+    }
+  }
+
+
+  @media (max-width: 560px) {
+    font-size: 15px;
+
+    &__form--item {
+      font-size: 15px;
     }
   }
 }

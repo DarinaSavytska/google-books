@@ -11,9 +11,9 @@ type Props = {
 export const BookList: React.FC<Props> = ({ totalBook, allBook }) => {
   return (
     <div className="BookList">
-      <h2 className="BookList__count">
+      {/* <h2 className="BookList__count">
         {totalBook > 0 ? `Found ${totalBook} results` : 'Not found any book'}
-      </h2>
+      </h2> */}
       <ul className="BookList__list">
         {allBook && allBook.map(book =>
           <li

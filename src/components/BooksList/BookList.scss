@@ -1,22 +1,42 @@
 .BookList {
   background-color: palevioletred;
+  padding: 5px;
 
   &__count {
+    margin-top: 0;
+    margin-bottom: 10px;
     text-align: center;
   }
 
   &__list {
     list-style-type: none;
-    display: grid;
-    grid-template-columns: repeat(3, 50vh);
-    grid-template-rows: repeat(3, ifr);
-    font-size: 30px;
+    padding: 0;
+    background-color: magenta;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
 
-    gap: 70px;
+    gap: 5px;
     justify-content: center;
 
     &--item {
       background-color: lightgreen;
+      width: 33%;
+
+      @media (max-width: 1080px) {
+        width: 40%;
+        font-size: 24px;
+      }
+
+      @media (max-width: 768px) {
+        width: 50%;
+        font-size: 20px;
+      }
+
+      @media (max-width: 560px) {
+        width: 75%;
+        font-size: 15px;
+      }
     }
   }
 }

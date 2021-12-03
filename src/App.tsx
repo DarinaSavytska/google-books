@@ -21,38 +21,44 @@ export const App: React.FC = () => {
 
   return (
     <div className="App">
-      <h1 className="App__title">Search for books</h1>
+      <div className="App__header">
+        <h1 className="App__title">Search for books</h1>
 
-      <form
-        className="App__form"
-        onSubmit={(event) => {
-          event.preventDefault();
-          // setSearchBook('');
-        }}
-      >
-        <input
-          type="text"
-          className="App__form--item"
-          placeholder="Search book"
-          value={searchBook}
-          onChange={handleInput}
-        />
-
-        <button
-          className="App__form--item"
-          onClick={() => {
-            getBook();
+        <form
+          className="App__form"
+          onSubmit={(event) => {
+            event.preventDefault();
+            // setSearchBook('');
           }}
         >
-          Search
-        </button>
+          <input
+            type="text"
+            className="App__form--item"
+            placeholder="Search book"
+            value={searchBook}
+            onChange={handleInput}
+          />
 
-      </form>
+          <button
+            className="App__form--item"
+            onClick={() => {
+              getBook();
+            }}
+          >
+            Search
+          </button>
 
-        <BookList
-          totalBook={totalBook}
-          allBook={allBook}
-        />
+        </form>
+
+        <h2 className="BookList__count">
+          {totalBook > 0 ? `Found ${totalBook} results` : 'Not found any book'}
+        </h2>
+      </div>
+
+      <BookList
+        totalBook={totalBook}
+        allBook={allBook}
+      />
     </div>
   );
 };
