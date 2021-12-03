@@ -1,0 +1,18 @@
+.App {
+  font-size: 30px;
+
+  &__title {
+    text-align: center;
+  }
+
+  &__form {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+
+    &--item {
+      background-color: lime;
+      font-size: 30px;
+    }
+  }
+}

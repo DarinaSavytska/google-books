@@ -1,0 +1,13 @@
+.BookCard {
+  padding: 20px;
+  background-color: lightblue;
+
+  &__link {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__img {
+    width: 250px;
+  }
+}

@@ -1,0 +1,22 @@
+.BookList {
+  background-color: palevioletred;
+
+  &__count {
+    text-align: center;
+  }
+
+  &__list {
+    list-style-type: none;
+    display: grid;
+    grid-template-columns: repeat(3, 50vh);
+    grid-template-rows: repeat(3, ifr);
+    font-size: 30px;
+
+    gap: 70px;
+    justify-content: center;
+
+    &--item {
+      background-color: lightgreen;
+    }
+  }
+}
