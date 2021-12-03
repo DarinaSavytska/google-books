@@ -28,7 +28,7 @@ export const BookCard: React.FC<Props> = ({ book }) => {
 
       <div className="BookCard__info">
         <p  className="BookCard__info--category">
-          {item.categories[0] || 'No category'}
+          {item.categories?.filter(autor => autor[0]) || 'No category'}
         </p>
 
         <h3  className="BookCard__info--title">
