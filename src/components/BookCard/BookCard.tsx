@@ -30,7 +30,7 @@ export const BookCard: React.FC<Props> = ({ book }) => {
         <p  className="BookCard__info--category">
           {item.categories[0] || 'No category'}
         </p>
-        {/* Убрать no category? С автором так же*/}
+
         <h3  className="BookCard__info--title">
           {item.title}
         </h3>
