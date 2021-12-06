@@ -9,6 +9,7 @@ export const App: React.FC = () => {
   const [searchBook, setSearchBook] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('');
   const [sortBy, setSortBy] = useState<string>('relevance');
+  const [showMessage, setShowMessage] = useState<boolean>(false);
 
   const handleInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchBook(event.target.value);
@@ -38,7 +39,7 @@ export const App: React.FC = () => {
           className="App__form"
           onSubmit={(event) => {
             event.preventDefault();
-            // setSearchBook('');
+            setSearchBook('');
           }}
         >
           <input
@@ -49,35 +50,40 @@ export const App: React.FC = () => {
             onChange={handleInput}
           />
 
-          Categories
-          <select
-            value={selectedCategory}
-            onChange={handleSelectedFilter}
-            className="App__form--item"
-          >
-            <option value="">All</option>
-            <option value="art">Art</option>
-            <option value="biography">Biography</option>
-            <option value="computers">Computers</option>
-            <option value="history">History</option>
-            <option value="medical">Medical</option>
-            <option value="poetry">Poetry</option>
-          </select>
+          <div>
+            {'Categories '}
+            <select
+              value={selectedCategory}
+              onChange={handleSelectedFilter}
+              className="App__form--item"
+            >
+              <option value="">All</option>
+              <option value="art">Art</option>
+              <option value="biography">Biography</option>
+              <option value="computers">Computers</option>
+              <option value="history">History</option>
+              <option value="medical">Medical</option>
+              <option value="poetry">Poetry</option>
+            </select>
+          </div>
 
-          Sorting by
-          <select
-            value={sortBy}
-            onChange={handleSelectedSort}
-            className="App__form--item"
-          >
-            <option value="relevance">Relevance</option>
-            <option value="newest">Newest</option>
-          </select>
+          <div>
+            {'Sorting by '}
+            <select
+              value={sortBy}
+              onChange={handleSelectedSort}
+              className="App__form--item"
+            >
+              <option value="relevance">Relevance</option>
+              <option value="newest">Newest</option>
+            </select>
+          </div>
 
           <button
             className="App__form--item"
             onClick={() => {
               getBook();
+              setShowMessage(true);
             }}
           >
             Search
@@ -85,15 +91,25 @@ export const App: React.FC = () => {
 
         </form>
 
-        <h2 className="BookList__count">
-          {totalBook > 0 ? `Found ${totalBook} results` : 'Not found any book'}
-        </h2>
+        {showMessage && (
+          <h2 className="BookList__count">
+            {totalBook > 0 ? `Found ${totalBook} results` : 'Not found any book'}
+          </h2>
+        )}
       </div>
 
       <BookList
-        totalBook={totalBook}
         allBook={allBook}
       />
+
+      {totalBook > 0 &&
+        <a
+          href="#root"
+          className="App__buttonUp"
+        >
+          &uarr;
+        </a>
+      }
     </div>
   );
 };

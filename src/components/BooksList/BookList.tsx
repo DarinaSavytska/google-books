@@ -1,29 +1,40 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './BookList.scss';
 import '../BookCard/BookCard';
 import { BookCard } from '../BookCard/BookCard';
+import { CurrentBook } from '../CurrentBook/CurrentBook';
 
 type Props = {
-  totalBook: string | number,
   allBook: Book[],
 };
 
-export const BookList: React.FC<Props> = ({ totalBook, allBook }) => {
+export const BookList: React.FC<Props> = ({ allBook }) => {
+  const [pageInfo, setPageInfo] = useState('list');
+
+  const changePageSelectedBook = () => {
+    setPageInfo('book');
+  };
+
+  const changePageBookList = () => {
+    setPageInfo('list');
+  };
+
   return (
     <div className="BookList">
-      {/* <h2 className="BookList__count">
-        {totalBook > 0 ? `Found ${totalBook} results` : 'Not found any book'}
-      </h2> */}
-      <ul className="BookList__list">
-        {allBook && allBook.map(book =>
-          <li
-            key={book.id}
-            className="BookList__list--item"
-          >
-            <BookCard book={book} />
-          </li>
-        )}
-      </ul>
+      {pageInfo === 'list' && (
+        <ul className="BookList__list">
+          {allBook && allBook.map(book =>
+            <li
+              key={book.id}
+              className="BookList__list--item"
+            >
+              <BookCard book={book} changePage={changePageSelectedBook} />
+            </li>
+          )}
+        </ul>
+      )}
+
+      {pageInfo === 'book' && <CurrentBook changePage={changePageBookList} />}
     </div>
   );
 };

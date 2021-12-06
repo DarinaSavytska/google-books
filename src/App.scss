@@ -2,6 +2,10 @@ body {
   margin: 0;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 .App {
   font-size: 30px;
   margin: 0;
@@ -10,14 +14,8 @@ body {
     display: flex;
     flex-direction: column;
     gap: 20px;
-    // position: fixed;
-    // height: 20%;
     background-color: mediumturquoise;
-    // padding: 30px;
-    // top: 0;
-    // left: 0;
-    // right: 0;
-    // padding-bottom: 20px;
+    padding: 10px 0;
   }
 
   &__title {
@@ -27,12 +25,38 @@ body {
 
   &__form {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    text-align: center;
     gap: 20px;
 
     &--item {
+      margin: 0 auto;
       background-color: lime;
       font-size: 30px;
+      max-width: 500px;
+      text-align: center;
+    }
+  }
+
+  &__buttonUp {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    text-align: center;
+
+    background-color: red;
+    width: 35px;
+    height: 35px;
+    font-size: 30px;
+    border-radius: 50%;
+    color: white;
+    text-decoration: none;
+
+    transition: 300ms;
+
+    &:hover {
+      background-color: yellow;
+      color: red;
     }
   }
 

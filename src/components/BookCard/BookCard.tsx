@@ -3,9 +3,10 @@ import './BookCard.scss';
 
 type Props = {
   book: Book,
+  changePage: () => void,
 };
 
-export const BookCard: React.FC<Props> = ({ book }) => {
+export const BookCard: React.FC<Props> = ({ book, changePage }) => {
   const item = book.volumeInfo;
   const defaultCover = 'https://ruslania.com/pictures/books_photos/30/309288/9785917615868_l.jpg';
 
@@ -19,6 +20,7 @@ export const BookCard: React.FC<Props> = ({ book }) => {
           className="BookCard__link"
         >
           <img
+            title="Search in google books"
             className="BookCard__img"
             src={item.imageLinks?.thumbnail || defaultCover}
             alt="Book cover"
@@ -31,7 +33,11 @@ export const BookCard: React.FC<Props> = ({ book }) => {
           {item.categories?.filter(cat => cat[0]) || 'No category'}
         </p>
 
-        <h3  className="BookCard__info--title">
+        <h3
+          className="BookCard__info--title"
+          title="More about the book"
+          onClick={changePage}
+        >
           {item.title}
         </h3>
 
