@@ -1,6 +1,5 @@
 .BookCard {
   padding: 20px;
-  background-color: lightblue;
 
   &__link {
     display: flex;
@@ -9,5 +8,14 @@
 
   &__img {
     width: 250px;
+  }
+
+  &__info--title {
+    cursor: pointer;
+    transition: 300ms;
+
+    &:hover {
+      color: yellow;
+    }
   }
 }

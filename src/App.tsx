@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import { getBooks } from './api/api';
 import { BookList } from './components/BooksList/BookList';
 import './App.scss';
+// import { Link, Route } from 'react-router-dom';
 
 export const App: React.FC = () => {
   const [totalBook, setTotalBook] = useState<string | number>('')
   const [allBook, setAllBook] = useState<Book[]>([]);
-  const [searchBook, setSearchBook] = useState('');
+  const [searchBook, setSearchBook] = useState('The Google Story (2018 Updated Edition)');
   const [selectedCategory, setSelectedCategory] = useState<string>('');
   const [sortBy, setSortBy] = useState<string>('relevance');
   const [showMessage, setShowMessage] = useState<boolean>(false);
@@ -34,17 +35,20 @@ export const App: React.FC = () => {
     <div className="App">
       <div className="App__header">
         <h1 className="App__title">Search for books</h1>
+        {/* <p className="App__title">
+          The Google Story (2018 Updated Edition)
+        </p> */}
 
         <form
           className="App__form"
           onSubmit={(event) => {
             event.preventDefault();
-            setSearchBook('');
+            // setSearchBook('');
           }}
         >
           <input
             type="text"
-            className="App__form--item"
+            className="App__form--item App__input"
             placeholder="Search book"
             value={searchBook}
             onChange={handleInput}
@@ -98,9 +102,11 @@ export const App: React.FC = () => {
         )}
       </div>
 
-      <BookList
-        allBook={allBook}
-      />
+      {/* <Route path="/book-list"> */}
+        <BookList
+          allBook={allBook}
+        />
+      {/* </Route> */}
 
       {totalBook > 0 &&
         <a

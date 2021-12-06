@@ -35,7 +35,12 @@ html {
       font-size: 30px;
       max-width: 500px;
       text-align: center;
+      cursor: pointer;
     }
+  }
+
+  &__input {
+    cursor: auto;
   }
 
   &__buttonUp {

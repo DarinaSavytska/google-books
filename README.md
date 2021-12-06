@@ -13,7 +13,7 @@ A program for searching and sorting google books.
 ### Dependencies
 * Node v12.16.3 and higher
 * NPM v6.14.4 and higher
-<!-- Добавить инфу про роутер -->
+<!-- Добавить инфу про роутер вроде 4 версия -->
 
 
 ### Installing

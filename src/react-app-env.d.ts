@@ -14,6 +14,7 @@ type BookInfo = {
   authors: string[],
   publisher: string,
   publishedDate: string,
+  description: string,
   pageCount: number,
   categories: string[],
   imageLinks: BookImage,

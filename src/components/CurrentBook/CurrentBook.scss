@@ -1,0 +1,25 @@
+.CurrentBook {
+  &__title {
+    cursor: pointer;
+    transition: 300ms;
+
+    &:hover {
+      color: yellow;
+    }
+  }
+
+  &__book {
+    // display: flex;
+    // justify-content: space-between;
+
+    display: grid;
+
+    &--img {
+      max-width: 500px;
+    }
+  }
+
+  &__info {
+    max-width: 2500px;
+  }
+}
