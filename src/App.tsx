@@ -7,25 +7,25 @@ import { FormList } from './components/FormList/FormList';
 export const App: React.FC = () => {
   const [totalBook, setTotalBook] = useState<string | number>('')
   const [allBook, setAllBook] = useState<Book[]>([]);
-  const [searchBook, setSearchBook] = useState('The Google Story (2018 Updated Edition)');
+  const [searchBook, setSearchBook] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('');
   const [sortBy, setSortBy] = useState<string>('relevance');
   const [load, setLoad] = useState('');
   const [showMessage, setShowMessage] = useState<boolean>(false);
-  const [page, setPage] = useState<number>(0);
 
-  console.log(page);
-
-  const getBook = async () => {
-    const found = await getBooks(searchBook, sortBy, selectedCategory, page);
+  const getBook = async (startBookNumber: number = 0, maxCount: number = 30) => {
+    const found = await getBooks(searchBook, sortBy, selectedCategory, startBookNumber, maxCount);
 
     if (found) {
       setLoad('finish');
     }
 
-    setPage((page: number) => page + 30);
-    setAllBook(found.items);
-    setTotalBook(found.totalItems)
+    if (!startBookNumber) {
+      setAllBook(found.items);
+      setTotalBook(found.totalItems)
+    } else {
+      setAllBook([...allBook, ...found.items]);
+    }
   };
 
   return (
@@ -44,7 +44,6 @@ export const App: React.FC = () => {
           totalBook={totalBook}
           setLoad={setLoad}
           setShowMessage={setShowMessage}
-          setPage={setPage}
         />
       </div>
 
@@ -59,8 +58,6 @@ export const App: React.FC = () => {
           allBook={allBook}
           showMessage={showMessage}
           totalBook={totalBook}
-          page={page}
-          setPage={setPage}
           getBook={getBook}
           setLoad={setLoad}
         />}

@@ -8,13 +8,11 @@ type Props = {
   allBook: Book[],
   showMessage: boolean,
   totalBook: string | number,
-  setPage:  React.Dispatch<React.SetStateAction<number>>
-  page: number,
-  getBook: () => void,
-  setLoad: (mes: string) => void
+  getBook: (startBookIndex: number) => void,
+  setLoad: (mes: string) => void,
 };
 
-export const BookList: React.FC<Props> = ({ allBook, showMessage, totalBook, setPage, page, getBook, setLoad }) => {
+export const BookList: React.FC<Props> = ({ allBook, showMessage, totalBook, getBook, setLoad }) => {
   const [selectedBook, setSelectedBook] = useState({} as Book);
   const [pageInfo, setPageInfo] = useState('list');
 
@@ -51,17 +49,20 @@ export const BookList: React.FC<Props> = ({ allBook, showMessage, totalBook, set
             )}
           </ul>
 
-          <div  className="BookList__pagination">
-            <button
-              type="button"
-              className="BookList__pagination--button"
-              onClick={() => {
-                setLoad('load');
-                getBook();
-              }}
-            >
-              Next page
-            </button>
+          <div className="BookList__pagination">
+            {allBook && allBook.length && (
+              <button
+                type="button"
+                className="BookList__pagination--button"
+                onClick={() => {
+                  setLoad('load');
+                  getBook(allBook.length);
+                }}
+              >
+                Load more
+              </button>
+            )}
+
           </div>
         </div>
       }
