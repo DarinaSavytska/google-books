@@ -40,3 +40,23 @@
     }
   }
 }
+
+.test {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+
+  &__button {
+    cursor: pointer;
+    font-size: 30px;
+    border-radius: 50px;
+    background-color: cadetblue;
+    color: white;
+  }
+
+  @media (max-width: 560px) {
+    &__button {
+      font-size: 20px;
+    }
+  }
+}

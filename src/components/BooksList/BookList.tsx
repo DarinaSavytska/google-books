@@ -3,19 +3,20 @@ import './BookList.scss';
 import '../BookCard/BookCard';
 import { BookCard } from '../BookCard/BookCard';
 import { CurrentBook } from '../CurrentBook/CurrentBook';
-// import { Route } from 'react-router-dom';
 
 type Props = {
   allBook: Book[],
   showMessage: boolean,
-  totalBook: string | number
+  totalBook: string | number,
+  setPage: (page: number) => void,
+  page: number,
+  getBook: () => void,
+  setLoad: (mes: string) => void
 };
 
-export const BookList: React.FC<Props> = ({ allBook, showMessage, totalBook }) => {
+export const BookList: React.FC<Props> = ({ allBook, showMessage, totalBook, setPage, page, getBook, setLoad }) => {
   const [selectedBook, setSelectedBook] = useState({} as Book);
   const [pageInfo, setPageInfo] = useState('list');
-
-  console.log(selectedBook);
 
   const changePageSelectedBook = () => {
     setPageInfo('book');
@@ -25,30 +26,12 @@ export const BookList: React.FC<Props> = ({ allBook, showMessage, totalBook }) =
     setPageInfo('list');
   };
 
-  const test = (book: Book) => {
+  const bookSelection = (book: Book) => {
     setSelectedBook(book);
   };
 
   return (
     <div className="BookList">
-      {/* <Route path="/list">
-        < ul className="BookList__list">
-          {allBook && allBook.map(book =>
-            <li
-              key={book.id}
-              className="BookList__list--item"
-            >
-              {console.log(allBook)}
-              <BookCard book={book} test={test} />
-            </li>
-          )}
-        </ul>
-      </Route> */}
-
-      {/* <Route path="/book">
-        <CurrentBook book={selectedBook} />
-      </Route> */}
-
       {showMessage && (
         <h2 className="BookList__count">
           {totalBook > 0 ? `Found ${totalBook} results` : 'Not found any book'}
@@ -56,17 +39,46 @@ export const BookList: React.FC<Props> = ({ allBook, showMessage, totalBook }) =
       )}
 
       {pageInfo === 'list' &&
-        < ul className="BookList__list">
-          {allBook && allBook.map(book =>
-            <li
-              key={book.id}
-              className="BookList__list--item"
+        <div>
+          < ul className="BookList__list">
+            {allBook && allBook.map(book =>
+              <li
+                key={book.id}
+                className="BookList__list--item"
+              >
+                <BookCard book={book} changePage={changePageSelectedBook} bookSelection={bookSelection} />
+              </li>
+            )}
+          </ul>
+
+          <div  className="test">
+            {page > 30 && (
+              <button
+                type="button"
+                className="test__button"
+                onClick={() => {
+                  setPage(page - 30);
+                  setLoad('load');
+                  getBook();
+                }}
+              >
+                Previus page
+              </button>
+            )}
+
+            <button
+              type="button"
+              className="test__button"
+              onClick={() => {
+                setPage(page + 30);
+                setLoad('load');
+                getBook();
+              }}
             >
-              {/* {console.log(allBook)} */}
-              <BookCard book={book} changePage={changePageSelectedBook} test={test} />
-            </li>
-          )}
-        </ul>
+              Next page
+            </button>
+          </div>
+        </div>
       }
 
       {pageInfo === 'book' && <CurrentBook changePage={changePageBookList} book={selectedBook} />}

@@ -12,10 +12,11 @@ export const App: React.FC = () => {
   const [sortBy, setSortBy] = useState<string>('relevance');
   const [load, setLoad] = useState('');
   const [showMessage, setShowMessage] = useState<boolean>(false);
+  const [page, setPage] = useState<number>(0);
 
 
   const getBook = async () => {
-    const found = await getBooks(searchBook, sortBy, selectedCategory);
+    const found = await getBooks(searchBook, sortBy, selectedCategory, page);
 
     if (found) {
       setLoad('finish');
@@ -55,6 +56,10 @@ export const App: React.FC = () => {
           allBook={allBook}
           showMessage={showMessage}
           totalBook={totalBook}
+          page={page}
+          setPage={setPage}
+          getBook={getBook}
+          setLoad={setLoad}
         />}
     </div>
   );

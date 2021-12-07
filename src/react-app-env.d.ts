@@ -23,7 +23,7 @@ type BookInfo = {
 };
 
 type Book = {
-  id: number,
+  id: string,
   volumeInfo: BookInfo,
 };
 

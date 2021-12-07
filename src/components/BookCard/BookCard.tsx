@@ -4,10 +4,10 @@ import './BookCard.scss';
 type Props = {
   book: Book,
   changePage: () => void,
-  test: (book: Book) => void,
+  bookSelection: (book: Book) => void,
 };
 
-export const BookCard: React.FC<Props> = ({ book, changePage, test }) => {
+export const BookCard: React.FC<Props> = ({ book, changePage, bookSelection }) => {
   const volume = book.volumeInfo;
   const defaultCover = 'https://ruslania.com/pictures/books_photos/30/309288/9785917615868_l.jpg';
 
@@ -39,7 +39,7 @@ export const BookCard: React.FC<Props> = ({ book, changePage, test }) => {
           title="More about the book"
           onClick={() => {
             changePage();
-            test(book);
+            bookSelection(book);
           }}
         >
           {volume.title}

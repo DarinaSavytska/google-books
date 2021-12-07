@@ -1,26 +1,31 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './CurrentBook.scss';
+import { getBookById } from '../../api/api';
 
 type Props = {
   changePage: () => void,
   book: Book,
 };
-
 export const CurrentBook: React.FC<Props> = ({ changePage, book }) => {
-  const volume = book.volumeInfo;
-  const cover: BookImage = volume.imageLinks;
+  const [volume, setVolume] = useState({} as Book);
+
+  useEffect(() => {
+    getBookById(book.id).then((foundBook) => setVolume(foundBook))
+  }, [book.id])
+
+  const cover: BookImage = volume.volumeInfo?.imageLinks;
   const defaultCover = 'https://ruslania.com/pictures/books_photos/30/309288/9785917615868_l.jpg';
-  const bookCover = cover?.extraLarge || cover?.large || cover?.medium || cover?.small || cover?.smallThumbnail || cover?.thumbnail;
+  const bookCover = cover?.medium || cover?.small || cover?.smallThumbnail || cover?.thumbnail;
+
+  console.log(bookCover);
 
   return (
     <div className="CurrentBook">
-      {/* <img src="http://books.google.com/books/content?id=zyTCAlFPjgYC&printsec=frontcover&img=1&zoom=4&edge=curl&imgtk=AFLRE73m7azsyCO7ExCJm4L8xiIxVKwXuPtpB-j4iXXHkpayOID078jGh4Z-kGi2eiM0wCQVV1j6fhjUVLSQhd82YRJs5wzEHjAuaUrqDReM7EZfLb7cHY6ATGafxGcZP3jfOp1VQwzv&source=gbs_api" alt="" /> */}
       <h2
         className="CurrentBook__title"
         onClick={changePage}
       >
         Return to books list
-        {console.log(volume)}
       </h2>
 
       <div className="CurrentBook__book">
@@ -32,19 +37,19 @@ export const CurrentBook: React.FC<Props> = ({ changePage, book }) => {
 
         <div className="CurrentBook__info">
           <ul>
-            {volume.categories?.map(cata => <li key={book.id}>{cata}</li>)}
+            {volume.volumeInfo?.categories?.map(cata => <li key={`${book.id}cata${Math.random()}`}>{cata}</li>)}
           </ul>
 
           <h3>
-            {volume.title}
+            {volume.volumeInfo?.title}
           </h3>
 
           <ul>
-            {volume.authors.map(autor => <li key={book.id}>{autor}</li>)}
+            {volume.volumeInfo?.authors?.map(autor => <li key={`${book.id}autor${Math.random()}`}>{autor}</li>)}
           </ul>
 
           <p>
-            {volume.description}
+            {volume.volumeInfo?.description}
           </p>
         </div>
       </div>
