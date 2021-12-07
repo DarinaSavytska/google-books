@@ -16,12 +16,14 @@ export const App: React.FC = () => {
 
 
   const getBook = async () => {
+    // console.log(page);
     const found = await getBooks(searchBook, sortBy, selectedCategory, page);
 
     if (found) {
       setLoad('finish');
     }
 
+    setPage((page: number) => page + 30);
     setAllBook(found.items);
     setTotalBook(found.totalItems)
   };

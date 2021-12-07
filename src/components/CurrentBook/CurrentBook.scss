@@ -23,19 +23,20 @@
   }
 
   @media (max-width: 1024px) {
-    &__book {
-      &--img {
-        max-width: 700px;
-      }
-    }
+    // &__book {
+    //   &--img {
+    //     max-width: 200px;
+    //   }
+    // }
   }
 
   @media (max-width: 768px) {
-    &__book {
-      &--img {
-        max-width: 500px;
-      }
-    }
+    // &__book {
+    //   &--img {
+    //     max-width: 200px;
+    //     max-height: 100%;
+    //   }
+    // }
   }
 
 

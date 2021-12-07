@@ -17,8 +17,6 @@ export const CurrentBook: React.FC<Props> = ({ changePage, book }) => {
   const defaultCover = 'https://ruslania.com/pictures/books_photos/30/309288/9785917615868_l.jpg';
   const bookCover = cover?.medium || cover?.small || cover?.smallThumbnail || cover?.thumbnail;
 
-  console.log(bookCover);
-
   return (
     <div className="CurrentBook">
       <h2
@@ -48,9 +46,11 @@ export const CurrentBook: React.FC<Props> = ({ changePage, book }) => {
             {volume.volumeInfo?.authors?.map(autor => <li key={`${book.id}autor${Math.random()}`}>{autor}</li>)}
           </ul>
 
-          <p>
+          {/* <p>
             {volume.volumeInfo?.description}
-          </p>
+          </p> */}
+
+          <div dangerouslySetInnerHTML={{ __html:volume.volumeInfo?.description}} />
         </div>
       </div>
     </div>

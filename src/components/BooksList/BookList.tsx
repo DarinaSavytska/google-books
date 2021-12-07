@@ -8,7 +8,7 @@ type Props = {
   allBook: Book[],
   showMessage: boolean,
   totalBook: string | number,
-  setPage: (page: number) => void,
+  setPage:  React.Dispatch<React.SetStateAction<number>>
   page: number,
   getBook: () => void,
   setLoad: (mes: string) => void
@@ -52,25 +52,10 @@ export const BookList: React.FC<Props> = ({ allBook, showMessage, totalBook, set
           </ul>
 
           <div  className="test">
-            {page > 30 && (
-              <button
-                type="button"
-                className="test__button"
-                onClick={() => {
-                  setPage(page - 30);
-                  setLoad('load');
-                  getBook();
-                }}
-              >
-                Previus page
-              </button>
-            )}
-
             <button
               type="button"
               className="test__button"
               onClick={() => {
-                setPage(page + 30);
                 setLoad('load');
                 getBook();
               }}
