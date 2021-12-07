@@ -11,6 +11,7 @@ type Props = {
   totalBook: string | number,
   setLoad: (text: string) => void,
   setShowMessage: (mes: boolean) => void,
+  setPage: (page: number) => void,
 }
 
 export const FormList: React.FC<Props> = ({
@@ -23,7 +24,8 @@ export const FormList: React.FC<Props> = ({
   getBook,
   totalBook,
   setLoad,
-  setShowMessage
+  setShowMessage,
+  setPage
 }) => {
   const handleInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchBook(event.target.value);
@@ -89,6 +91,7 @@ export const FormList: React.FC<Props> = ({
             getBook();
             setShowMessage(true);
             setLoad('load')
+            setPage(-30)
           }}
         >
           Search

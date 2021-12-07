@@ -34,23 +34,19 @@ export const CurrentBook: React.FC<Props> = ({ changePage, book }) => {
         />
 
         <div className="CurrentBook__info">
-          <ul>
-            {volume.volumeInfo?.categories?.map(cata => <li key={`${book.id}cata${Math.random()}`}>{cata}</li>)}
-          </ul>
+          <div className="CurrentBook__info--details">
+            {volume.volumeInfo?.categories?.map(cata => cata).join(', ')}
+          </div>
 
-          <h3>
+          <h2>
             {volume.volumeInfo?.title}
-          </h3>
+          </h2>
 
-          <ul>
-            {volume.volumeInfo?.authors?.map(autor => <li key={`${book.id}autor${Math.random()}`}>{autor}</li>)}
-          </ul>
+          <div className="CurrentBook__info--details">
+            {volume.volumeInfo?.authors?.map(autor => autor).join(' / ')}
+          </div>
 
-          {/* <p>
-            {volume.volumeInfo?.description}
-          </p> */}
-
-          <div dangerouslySetInnerHTML={{ __html:volume.volumeInfo?.description}} />
+          <div className="CurrentBook__info--description" dangerouslySetInnerHTML={{ __html: volume.volumeInfo?.description }} />
         </div>
       </div>
     </div>

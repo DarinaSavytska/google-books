@@ -51,10 +51,10 @@ export const BookList: React.FC<Props> = ({ allBook, showMessage, totalBook, set
             )}
           </ul>
 
-          <div  className="test">
+          <div  className="BookList__pagination">
             <button
               type="button"
-              className="test__button"
+              className="BookList__pagination--button"
               onClick={() => {
                 setLoad('load');
                 getBook();

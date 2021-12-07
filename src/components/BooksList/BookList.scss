@@ -11,7 +11,6 @@
   &__list {
     list-style-type: none;
     padding: 0;
-    background-color: magenta;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -39,24 +38,24 @@
       }
     }
   }
-}
 
-.test {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
+  &__pagination {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
 
-  &__button {
-    cursor: pointer;
-    font-size: 30px;
-    border-radius: 50px;
-    background-color: cadetblue;
-    color: white;
-  }
+    &--button {
+      cursor: pointer;
+      font-size: 30px;
+      border-radius: 50px;
+      background-color: cadetblue;
+      color: white;
+    }
 
-  @media (max-width: 560px) {
-    &__button {
-      font-size: 20px;
+    @media (max-width: 560px) {
+      &--button {
+        font-size: 20px;
+      }
     }
   }
 }

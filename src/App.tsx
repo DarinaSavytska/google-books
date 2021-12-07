@@ -14,9 +14,9 @@ export const App: React.FC = () => {
   const [showMessage, setShowMessage] = useState<boolean>(false);
   const [page, setPage] = useState<number>(0);
 
+  console.log(page);
 
   const getBook = async () => {
-    // console.log(page);
     const found = await getBooks(searchBook, sortBy, selectedCategory, page);
 
     if (found) {
@@ -44,6 +44,7 @@ export const App: React.FC = () => {
           totalBook={totalBook}
           setLoad={setLoad}
           setShowMessage={setShowMessage}
+          setPage={setPage}
         />
       </div>
 
